@@ -9,7 +9,9 @@ function App() {
         <Weather/>
       </header>
       <div className='Footer'>
-        This project was coded by Kelly O'Keefe. It is open-sourced on GitHub, and hosted on Netlify.
+        This project was coded by <a href="https://github.com/kelly-okeefe" target='_blank' title="Go to GitHub profile">Kelly O'Keefe</a>. 
+        It is open-sourced on <a href="https://github.com/kelly-okeefe/weather-app-react" target="_blank" title="Go to the GitHub repository">GitHub</a>, and 
+        hosted on <a href="https://astonishing-babka-1e8963.netlify.app/" target='_blank' title="Launch project">Netlify</a>.
       </div>
     </div>
   );
