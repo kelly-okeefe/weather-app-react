@@ -5,7 +5,6 @@ function App() {
   return (
     <div className="App">
         <div className='Container'>
-        <h1>Weather App</h1>
         <Weather/>
       <footer>
         This project was coded by <a href="https://github.com/kelly-okeefe" target='_blank' rel="noreferrer" title="Go to GitHub profile">Kelly O'Keefe</a>. 
