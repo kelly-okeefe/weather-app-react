@@ -1,11 +1,12 @@
+import React from 'react';
 import Weather from './Weather';
 import './App.css';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
         <div className='Container'>
-        <Weather/>
+        <Weather defaultCity="London"/>
       <footer>
         This project was coded by <a href="https://github.com/kelly-okeefe" target='_blank' rel="noreferrer" title="Go to GitHub profile">Kelly O'Keefe</a>. 
         It is open-sourced on <a href="https://github.com/kelly-okeefe/weather-app-react" target="_blank" rel="noreferrer" title="Go to the GitHub repository">GitHub</a>, and 
@@ -16,4 +17,4 @@ function App() {
   );
 }
 
-export default App;
+

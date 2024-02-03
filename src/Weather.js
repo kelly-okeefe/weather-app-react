@@ -1,17 +1,26 @@
 import React, { useState } from "react";
+import FormattedDate from "./FormattedDate";
 import axios from "axios";
 import "./Weather.css";
 
-export default function Weather() {
-  const [ready, setReady] = useState(false);
-  const [temperature, setTemperature] = useState(null);
-function handleResponse(response) {
-  console.log(response.data);
-  setTemperature(response.data.temperature.current);
-  setReady(true);
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
+
+  function handleResponse(response) {
+  setWeatherData({
+    ready: true,
+    city: response.data.city,
+    date: new Date (response.data.time * 1000),
+    description: response.data.condition.description,
+    iconUrl: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
+    temperature: response.data.temperature.current,
+    feelsLike: response.data.temperature.feels_like,
+    humidity: response.data.temperature.humidity,
+    wind: response.data.wind.speed,
+  })
 }
 
-if (ready) {
+if (weatherData.ready) {
   return (
   <div className="Weather">
     <form>
@@ -24,24 +33,26 @@ if (ready) {
       </div>
       </div>
     </form>
-  <h1>London</h1>
+  <h1>{weatherData.city}</h1>
   <ul>
-    <li>Sunday 13:45</li>
-    <li>Cloudy</li>
+    <li>
+      <FormattedDate date={weatherData.date} />
+        </li>
+    <li className="text-capitalize">{weatherData.description}</li>
   </ul>
   <div className="row mt-3">
     <div className="col-6">
       <div className="clearfix">
-      <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" alt="cloudy" />
-      <span className="temperature">{temperature}</span>
+      <img src={weatherData.iconUrl} alt={weatherData.description} />
+      <span className="temperature">{Math.round(weatherData.temperature)}</span>
       <span className="unit">°C</span>
       </div>
     </div>
     <div className="col-6">
       <ul>
-        <li>Precipitation: 0%</li>
-        <li>Humidity: 68%</li>
-        <li>Wind: 14km/h</li>
+        <li>Feels like: {Math.round(weatherData.feelsLike)}°C </li>
+        <li>Humidity: {Math.round(weatherData.humidity)}%</li>
+        <li>Wind: {Math.round(weatherData.wind)} km/h</li>
       </ul>
     </div>
   </div>
@@ -49,10 +60,10 @@ if (ready) {
   )
 } else {
   const apiKey = "e7f44dtf8936b0ao9a003f375cfb3403";
-  let city="New York";
-  let apiUrl= `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  let apiUrl= `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(handleResponse);
 
   return "Loading weather...";
+
 } 
 }
