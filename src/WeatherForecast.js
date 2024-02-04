@@ -15,17 +15,21 @@ export default function WeatherForecast(props) {
     }
 
     if (loaded) {
-        console.log(forecast);
       return (  
         <div className="WeatherForecast">
         <div className="row">
-        <div className="col">
-        <WeatherForecastDay data={forecast[0]} />
+            {forecast.map(function (dailyForecast, index) {
+                if (index >0 && index < 6) {
+            return (
+                <div className="col" key={index}>
+        <WeatherForecastDay data={dailyForecast} />
+        </div>
+            );
+            }
+        })}
         </div>
         </div>
-        </div>
-        );
-
+      )
     } else {
 
     const apiKey = "e7f44dtf8936b0ao9a003f375cfb3403";
