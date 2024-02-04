@@ -52,7 +52,6 @@ if (weatherData.ready) {
     </form>
     <WeatherInfo data={weatherData}/>
     <WeatherForecast city={weatherData.city} />
-  
   </div>
   )
 } else {
