@@ -28,13 +28,14 @@ export default function WeatherForecast(props) {
         <WeatherForecastDay data={dailyForecast} />
         </div>
             );
+            } else {
+                return null;
             }
         })}
         </div>
         </div>
       )
     } else {
-
     const apiKey = "e7f44dtf8936b0ao9a003f375cfb3403";
     let city = props.city;
     let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
