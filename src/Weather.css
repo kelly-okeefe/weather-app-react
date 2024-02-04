@@ -49,3 +49,8 @@
     line-height: 1;
     top: -34px;
 }
+
+.Weather .no-border {
+    border: 0;
+    box-shadow: none;
+}
